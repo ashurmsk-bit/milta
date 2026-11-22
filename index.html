@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ܡܠܬܐ</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ܡܠܬܐ">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#8a4b1f">
+<style>@font-face{font-family:"Adiabene";src:local("Adiabene"),local("Adiabene Regular"),url("fonts/Adiabene.woff2") format("woff2"),url("fonts/Adiabene.ttf") format("truetype")}</style>
+
+<style>
+:root{--bg:#faf8f4;--fg:#222;--mut:#6b6558;--line:#d9d2c3;--hd:#efe8d8;--ac:#8a4b1f;--btn:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1a17;--fg:#ece6d8;--mut:#a39b8a;--line:#3c372f;--hd:#2a261f;--ac:#e0a574;--btn:#26231e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1c1a17;--fg:#ece6d8;--mut:#a39b8a;--line:#3c372f;--hd:#2a261f;--ac:#e0a574;--btn:#26231e;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.4 system-ui,sans-serif;padding:16px 12px 40px;max-width:560px;margin-inline:auto}
+.bar{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding:6px 0 10px;z-index:2}
+select{width:100%;padding:14px 10px;font:inherit;font-weight:600;color:var(--fg);background:var(--btn);border:1.5px solid var(--ac);border-radius:12px;appearance:none;-webkit-appearance:none;text-align:center;text-align-last:center}
+.sy{font-family:"Adiabene","Noto Sans Syriac Eastern","Noto Sans Syriac","Estrangelo Edessa","Serif Syriac",serif;direction:rtl;unicode-bidi:isolate;display:block;font-size:1.45rem;line-height:1.5}
+h2{font-size:1rem;color:var(--ac);margin:18px 0 6px}.tn{font-size:1.25rem;margin:16px 0 6px}
+.t{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+table{border-collapse:collapse;width:100%;table-layout:fixed}
+th,td{border-bottom:1px solid var(--line);padding:7px 6px;text-align:center;vertical-align:top}
+tr:last-child td,tr:last-child th{border-bottom:0}
+thead th{background:var(--hd);font-size:.8rem;padding:6px 4px}
+tbody th{width:34px;max-width:34px;text-align:center;font-size:.74rem;color:var(--mut);font-weight:600;background:var(--hd);padding:4px 1px;white-space:nowrap}thead th:first-child{width:34px;padding:0}
+small{display:block;color:var(--mut);font-size:.72rem;direction:ltr;unicode-bidi:isolate}
+.sy2{font-family:"Adiabene","Noto Sans Syriac Eastern","Noto Sans Syriac","Estrangelo Edessa",serif}
+.ed{cursor:pointer}.ed:active{background:var(--hd)}
+.lnk{background:none;border:0;color:var(--mut);font:inherit;font-size:.8rem;text-decoration:underline;padding:8px}
+#dlg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);align-items:center;justify-content:center;z-index:9;padding:16px}
+.box{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px;width:100%;max-width:420px;box-sizing:border-box}
+.box label{display:block;font-size:.8rem;color:var(--mut);margin-bottom:12px}
+.box input{display:block;width:100%;box-sizing:border-box;margin-top:4px;padding:10px;font:inherit;font-size:1.2rem;color:var(--fg);background:var(--btn);border:1px solid var(--line);border-radius:8px}
+.row{display:flex;gap:8px}.row button{flex:1;padding:11px 6px;font:inherit;color:var(--fg);background:var(--btn);border:1px solid var(--line);border-radius:10px}.row .pri{background:var(--ac);color:var(--bg);border-color:var(--ac);font-weight:600}
+.tools{text-align:center;margin:16px 0 0}.nt small{display:none}
+#dd{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);align-items:center;justify-content:center;z-index:9;padding:16px}
+#dd .box button.wide,.filebtn{display:block;width:100%;box-sizing:border-box;margin:8px 0;padding:11px 6px;font:inherit;text-align:center;color:var(--fg);background:var(--btn);border:1px solid var(--line);border-radius:10px;cursor:pointer}
+#dd .box button.pri{background:var(--ac);color:var(--bg);border-color:var(--ac);font-weight:600}
+.filebtn input{display:none}.info{margin:0 0 8px;color:var(--mut);font-size:.82rem}
+#dtext{display:block;width:100%;box-sizing:border-box;font:12px/1.3 monospace;color:var(--fg);background:var(--btn);border:1px solid var(--line);border-radius:8px;padding:8px;margin:8px 0}
+.note{color:var(--mut);font-size:.78rem;margin-top:14px}
+#out{min-height:60vh}
+</style>
+</head>
+<body>
+<div class="bar">
+  <select id="v" aria-label="ܦܥܠܐ"><option value="">ܦܥܠܐ</option></select>
+  <select id="s" aria-label="ܒܢܝܢܐ"><option value="">ܒܢܝܢܐ</option></select>
+</div>
+<div id="out"></div>
+<p class="tools"><button id="bt" class="lnk"></button> <button id="bd" class="lnk">Данные: выгрузить / загрузить</button></p>
+<div id="dlg"><div class="box"><label>Сирийский текст<input id="fs" class="sy2" dir="rtl" autocomplete="off"></label><label>Транскрипция (русскими буквами)<input id="ft" autocomplete="off"></label><div class="row"><button id="bs" class="pri">Сохранить</button><button id="bc">Отмена</button></div></div></div>
+<div id="dd"><div class="box"><p class="info" id="dmsg"></p><p class="info">Правки хранятся только в этом браузере. Выгрузите их, чтобы не потерять.</p><button id="dx" class="wide pri" style="display:none">Выгрузить файл</button><textarea id="dtext" rows="6" spellcheck="false"></textarea><div class="row"><button id="dcp">Копировать</button><button id="dim">Загрузить из текста</button></div><label class="wide filebtn">Загрузить файл<input id="dfile" type="file" accept=".json,application/json,text/plain"></label><button id="dcl" class="wide">Закрыть</button></div></div>
+<script>
+var a='ܲ',e='ܸ',aa='ܵ',o='ܘܿ',ii='ܝܼ',uu='ܘܼ';
+function P(s,t){return {s:s,t:t}}
+function cat(){var s='',t='';for(var i=0;i<arguments.length;i++){s+=arguments[i].s;t+=arguments[i].t}return P(s,t)}
+function st(p,x){return x.star?P(p.s,p.t+'*'):p}
+
+/* Данные. Каждый глагол: stems — массив из 6 (null = формы ещё не добавлены). */
+var NAMES=['ܦܥܲܠ','ܦܲܥܸܠ','ܐܲܦܥܸܠ','ܐܸܬܦܥܸܠ','ܐܸܬܦܲܥܲܠ','ܐܸܬܬܲܦܥܲܠ'];
+function pre(a1,a2,a3,b1,b2,b3){return [P(a1,b1),P(a2,b2),P(a3,b3)]}
+var NE=pre('ܢܸ','ܬܸ','ܐܸ','ne','te','ʾe');
+function peal(B,S,sg,pl,pm,pq,opt){var o={B:B,S:S,pre:(opt&&opt.pre)||NE,sg:sg,pl:pl,pp:P('',''),pm:pm,pq:pq};if(opt){o.ist=opt.ist}return o}
+function fixed(perf,imp,pr,ist){return {fixed:{perf:perf,imp:imp,pr:pr},ist:ist}}
+function L(arr){return arr.map(function(x){return P(x[0],x[1])})}
+
+var KTB=[
+ {B:P('ܟܬܲܒ','kṯaḇ'),S:P('ܟܸܬܒ','ketḇ'),pre:NE,sg:P('ܟܬܘܿܒ','ktoḇ'),pl:P('ܟܬܒ','ktḇ'),pp:P('',''),pm:P('ܟܵܬܹܒ','kāṯeḇ'),pq:P('ܟܵܬܒ','kāṯḇ')},
+ {B:P('ܟܲܬܸܒ','katteḇ'),S:P('ܟܲܬܒ','kattḇ'),pre:pre('ܢ','ܬ','ܐܲ','n','t','ʾa'),sg:P('ܟܲܬܸܒ','katteḇ'),pl:P('ܟܲܬܒ','kattḇ'),pp:P('ܡ','m'),pm:P('ܟܲܬܸܒ','katteḇ'),pq:P('ܟܲܬܒ','kattḇ'),star:1},
+ {B:P('ܐܲܟܬܸܒ','ʾakteḇ'),S:P('ܐܲܟܬܒ','ʾaktḇ'),pre:pre('ܢܲ','ܬܲ','ܐܲ','na','ta','ʾa'),sg:P('ܟܬܸܒ','kteḇ'),pl:P('ܟܬܒ','ktḇ'),pp:P('ܡܲ','ma'),pm:P('ܟܬܸܒ','kteḇ'),pq:P('ܟܬܒ','ktḇ'),star:1},
+ {B:P('ܐܸܬܟܬܹܒ','ʾeṯkṯēḇ'),S:P('ܐܸܬܟܲܬܒ','ʾeṯkaṯḇ'),pre:pre('ܢܸܬ','ܬܸܬ','ܐܸܬ','neṯ','teṯ','ʾeṯ'),sg:P('ܟܬܹܒ','kṯēḇ'),pl:P('ܟܬܒ','kṯḇ'),pp:P('ܡܸܬ','meṯ'),pm:P('ܟܬܹܒ','kṯēḇ'),pq:P('ܟܬܒ','kṯḇ'),star:1},
+ {B:P('ܐܸܬܟܲܬܲܒ','ʾeṯkattaḇ'),S:P('ܐܸܬܟܲܬܒ','ʾeṯkattḇ'),pre:pre('ܢܸܬ','ܬܸܬ','ܐܸܬ','neṯ','teṯ','ʾeṯ'),sg:P('ܟܲܬܲܒ','kattaḇ'),pl:P('ܟܲܬܒ','kattḇ'),pp:P('ܡܸܬ','meṯ'),pm:P('ܟܲܬܲܒ','kattaḇ'),pq:P('ܟܲܬܒ','kattḇ'),star:1},
+ {B:P('ܐܸܬܬܲܟܬܲܒ','ʾettaktaḇ'),S:null,pre:pre('ܢܸܬ','ܬܸܬ','ܐܸܬ','net','tet','ʾet'),sg:P('ܬܲܟܬܲܒ','taktaḇ'),pl:P('ܬܲܟܬܒ','taktḇ'),pp:P('ܡܸܬ','met'),pm:P('ܬܲܟܬܲܒ','taktaḇ'),pq:P('ܬܲܟܬܒ','taktḇ')}
+];
+var VERBS=[
+ {root:'ܟܬܒ',stems:KTB},
+ {root:'ܐܡܪ',stems:[peal(P('ܐܸܡܲܪ','ʾemar'),P('ܐܸܡܪ','ʾemr'),P('ܡܲܪ','mar'),P('ܡܪ','mr'),P('ܐܵܡܲܪ','ʾāmar'),P('ܐܵܡܪ','ʾāmr'),{pre:pre('ܢܸ','ܬܸ','ܐܸ','nē','tē','ʾē'),ist:1}),null,null,null,null,null]},
+ {root:'ܐܟܠ',stems:[peal(P('ܐܸܟܲܠ','ʾekal'),P('ܐܸܟܠ','ʾekl'),P('ܟܘܿܠ','kol'),P('ܟܠ','kl'),P('ܐܵܟܸܠ','ʾākel'),P('ܐܵܟܠ','ʾākl'),{pre:pre('ܢܸ','ܬܸ','ܐܸ','nē','tē','ʾē'),ist:1}),null,null,null,null,null]},
+ {root:'ܐܠܨ',stems:[peal(P('ܐܸܠܲܨ','ʾelaṣ'),P('ܐܸܠܨ','ʾelṣ'),P('ܠܲܨ','laṣ'),P('ܠܨ','lṣ'),P('ܐܵܠܸܨ','ʾāleṣ'),P('ܐܵܠܨ','ʾālṣ'),{pre:pre('ܢܸ','ܬܸ','ܐܸ','nē','tē','ʾē'),ist:1}),null,null,null,null,null]},
+ {root:'ܢܦܩ',stems:[peal(P('ܢܦܲܩ','npaq'),P('ܢܸܦܩ','nepq'),P('ܦܘܿܩ','ppoq'),P('ܦܩ','ppq'),P('ܢܵܦܹܩ','nāpeq'),P('ܢܵܦܩ','nāpq')),null,null,null,null,null]},
+ {root:'ܝܠܕ',stems:[peal(P('ܐܝܼܠܸܕ','iled'),P('ܝܸܠܕ','yeld'),P('ܠܲܕ','lad'),P('ܠܕ','ld'),P('ܝܵܠܹܕ','yāled'),P('ܝܵܠܕ','yāld'),{pre:pre('ܢܝܼ','ܬܝܼ','ܐܝܼ','nī','tī','ʾī'),ist:1}),null,null,null,null,null]},
+ {root:'ܫܐܠ',stems:[peal(P('ܫܸܐܠ','šel'),null,P('ܫܲܐܠ','šal'),P('ܫܠ','šl'),P('ܫܵܐܹܠ','šāʾel'),P('ܫܵܐܠ','šāʾl'),{ist:1}),null,null,null,null,null]},
+ {root:'ܒܙ',stems:[peal(P('ܒܲܙ','baz'),P('ܒܸܙ','bezz'),P('ܒܘܿܙ','bboz'),P('ܒܙ','bbz'),P('ܒܵܐܹܙ','bāʾez'),P('ܒܵܙ','bāz'),{ist:1}),null,null,null,null,null]},
+ {root:'ܩܡ',stems:[peal(P('ܩܵܡ','qām'),null,P('ܩܘܼܡ','qūm'),P('ܩܘܼܡ','qūm'),P('ܩܵܐܹܡ','qāʾem'),P('ܩܵܝܡ','qāym'),{ist:1}),null,null,null,null,null]},
+ {root:'ܡܝܬ',stems:[peal(P('ܡܝܼܬ','mīt'),null,P('ܡܘܼܬ','mūt'),P('ܡܘܼܬ','mūt'),P('ܡܵܐܹܬ','māʾet'),P('ܡܵܝܬ','māyt'),{ist:1}),null,null,null,null,null]},
+ {root:'ܚܙܐ',stems:[fixed(
+  L([['ܚܙܵܐ','ḥzā'],['ܚܙܵܬ','ḥzāt'],['ܚܙܲܘ','ḥzaw'],['ܚܙܲܝ','ḥzay'],['ܚܙܲܝܬ','ḥzayt'],['ܚܙܲܝܬ','ḥzayt'],['ܚܙܲܝܬܘܿܢ','ḥzayton'],['ܚܙܲܝܬܸܝܢ','ḥzayten'],['ܚܙܸܬ','ḥzeṯ'],['ܚܙܲܝܢ','ḥzayn']]),
+  L([['ܢܸܚܙܸܐ','neḥze'],['ܬܸܚܙܸܐ','teḥze'],['ܢܸܚܙܘܿܢ','neḥzon'],['ܢܸܚܙܝܵܢ','neḥzyān'],['ܬܸܚܙܸܐ','teḥze'],['ܬܸܚܙܲܝܢ','teḥzayn'],['ܬܸܚܙܘܿܢ','teḥzon'],['ܬܸܚܙܝܵܢ','teḥzyān'],['ܐܸܚܙܸܐ','ʾeḥze'],['ܢܸܚܙܸܐ','neḥze']]),
+  L([['ܚܵܙܹܐ','ḥāze'],['ܚܵܙܝܵܐ','ḥāzyā'],['ܚܵܙܹܝܢ','ḥāzeyn'],['ܚܵܙܝܵܢ','ḥāzyān']]),1),null,null,null,null,null]},
+ {root:'ܚܕܝ',stems:[fixed(
+  L([['ܚܕܝܼ','ḥdī'],['ܚܸܕܝܲܬ','ḥedyaṯ'],['ܚܕܝܼܘ','ḥdī(w)'],['ܚܕܝܼ','ḥdī'],['ܚܕܝܼܬ','ḥdīyt'],['ܚܕܝܼܬ','ḥdīyt'],['ܚܕܝܼܬܘܿܢ','ḥdīyton'],['ܚܕܝܼܬܸܝܢ','ḥdīyten'],['ܚܕܝܼܬ','ḥdīṯ'],['ܚܕܝܼܢ','ḥdīyn']]),
+  L([['ܢܸܚܕܸܐ','neḥde'],['ܬܸܚܕܸܐ','teḥde'],['ܢܸܚܕܘܿܢ','neḥdon'],['ܢܸܚܕܝܵܢ','neḥdyān'],['ܬܸܚܕܸܐ','teḥde'],['ܬܸܚܕܲܝܢ','teḥdayn'],['ܬܸܚܕܘܿܢ','teḥdon'],['ܬܸܚܕܝܵܢ','teḥdyān'],['ܐܸܚܕܸܐ','ʾeḥde'],['ܢܸܚܕܸܐ','neḥde']]),
+  L([['ܚܵܕܹܐ','ḥāde'],['ܚܵܕܝܵܐ','ḥādyā'],['ܚܵܕܹܝܢ','ḥādeyn'],['ܚܵܕܝܵܢ','ḥādyān']]),1),null,null,null,null,null]}
+];
+
+function sm(p,on){return on?P(p.s,p.t+'*'):p}
+/* ---- генераторы форм для пород 2-6 ---- */
+var pa=P('ܲ','a'),pe=P('ܸ','e'),pee=P('ܹ','ē'),pii=P('ܝܼ','ī'),paa=P('ܵ','ā'),E0=P('','');
+var ha=P('ܐܲ','ʾa'),het=P('ܐܸܬ','ʾeṯ'),hett=P('ܐܸܬܬܲ','ʾetta'),ta=P('ܬܲ','ta');
+function dbl(c){return P(c.s,c.t+c.t)}
+var PRE=[
+ [P('ܢ','n'),P('ܬ','t'),ha,P('ܡ','m')],
+ [P('ܢܲ','na'),P('ܬܲ','ta'),ha,P('ܡܲ','ma')],
+ [P('ܢܸܬ','neṯ'),P('ܬܸܬ','teṯ'),het,P('ܡܸܬ','meṯ')],
+ [P('ܢܸܬ','neṯ'),P('ܬܸܬ','teṯ'),het,P('ܡܸܬ','meṯ')],
+ [P('ܢܸܬ','net'),P('ܬܸܬ','tet'),P('ܐܸܬ','ʾet'),P('ܡܸܬ','met')]
+];
+function mkpre(i){var q=PRE[i];return {pre:[q[0],q[1],q[2]],pp:q[3]}}
+function stemObj(i,B,S,sg,pl,extra){var o=mkpre(i);o.B=B;o.S=S;o.sg=sg;o.pl=pl;o.pm=sg;o.pq=pl;o.all=1;o.star=1;o.ist=1;if(extra)for(var k in extra)o[k]=extra[k];return o}
+/* c1,c2,c3 — пары; opt.w: начальная ܐ/ܝ даёт ܘ; opt.n: ܢ ассимилируется */
+function strongDerived(c1,c2,c3,opt){
+ opt=opt||{};var c1a=c1,c2a=c2;
+ if(opt.w)c1a=P('ܘ','w');
+ if(opt.n){c1a=E0;c2a=dbl(c2)}
+ var r=[];
+ var c2d=dbl(c2),Bp=cat(c1,pa,c2d,pe,c3),Sp=cat(c1,pa,c2d,c3);
+ r.push(stemObj(0,Bp,Sp,Bp,Sp));
+ r.push(stemObj(1,cat(ha,c1a,c2a,pe,c3),cat(ha,c1a,c2a,c3),cat(c1a,c2a,pe,c3),cat(c1a,c2a,c3)));
+ r.push(stemObj(2,cat(het,c1,c2,pee,c3),cat(het,c1,pa,c2,c3),cat(c1,c2,pee,c3),cat(c1,c2,c3)));
+ r.push(stemObj(3,cat(het,c1,pa,c2d,pa,c3),cat(het,c1,pa,c2d,c3),cat(c1,pa,c2d,pa,c3),cat(c1,pa,c2d,c3)));
+ r.push(stemObj(4,cat(hett,c1a,c2a,pa,c3),null,cat(ta,c1a,c2a,pa,c3),cat(ta,c1a,c2a,c3)));
+ return r;
+}
+function hollowDerived(c1,c3){
+ var y=P('ܝ','yy'),r=[];
+ var Bp=cat(c1,pa,y,pe,c3),Sp=cat(c1,pa,y,c3);
+ r.push(stemObj(0,Bp,Sp,Bp,Sp));
+ var ia=cat(c1,pii,c3);
+ r.push(stemObj(1,cat(ha,ia),cat(ha,ia),ia,ia,{Bt:cat(ha,c1,pe,c3)}));
+ r.push(stemObj(2,cat(het,ia),cat(het,ia),ia,ia,{Bt:cat(het,c1,pe,c3)}));
+ r.push(stemObj(3,cat(het,c1,pa,y,pa,c3),cat(het,c1,pa,y,c3),cat(c1,pa,y,pa,c3),cat(c1,pa,y,c3)));
+ var ma=cat(c1,paa,c3);
+ r.push(stemObj(4,cat(hett,ma),null,cat(ta,ma),cat(ta,ma)));
+ return r;
+}
+function iiiForms(YP,YI,i){
+ var q=PRE[i],n=q[0],t=q[1],x=q[2],m=q[3];
+ var perf=[cat(YP,pii),cat(YP,P('ܝܲܬ','yaṯ')),cat(YP,P('ܝܼܘ','ī(w)')),cat(YP,pii),cat(YP,P('ܝܼܬ','īyt')),cat(YP,P('ܝܼܬ','īyt')),cat(YP,P('ܝܼܬܘܿܢ','īyton')),cat(YP,P('ܝܼܬܸܝܢ','īyten')),cat(YP,P('ܝܼܬ','īṯ')),cat(YP,P('ܝܼܢ','īyn'))];
+ var E=P('ܸܐ','e');
+ var imp=[cat(n,YI,E),cat(t,YI,E),cat(n,YI,P('ܘܿܢ','on')),cat(n,YI,P('ܝܵܢ','yān')),cat(t,YI,E),cat(t,YI,P('ܲܝܢ','ayn')),cat(t,YI,P('ܘܿܢ','on')),cat(t,YI,P('ܝܵܢ','yān')),cat(x,YI,E),cat(n,YI,E)];
+ var pr=[cat(m,YI,E),cat(m,YI,P('ܝܵܐ','yā')),cat(m,YI,P('ܹܝܢ','eyn')),cat(m,YI,P('ܝܵܢ','yān'))];
+ [perf,imp,pr].forEach(function(a){for(var k=0;k<a.length;k++)a[k]=sm(a[k],1)});
+ return {fixed:{perf:perf,imp:imp,pr:pr},ist:0};
+}
+function iiiDerived(x1,x2){
+ var x2d=dbl(x2),r=[];
+ r.push(iiiForms(cat(x1,pa,x2d),cat(x1,pa,x2d),0));
+ r.push(iiiForms(cat(ha,x1,x2),cat(x1,x2),1));
+ r.push(iiiForms(cat(het,x1,x2),cat(x1,x2),2));
+ r.push(iiiForms(cat(het,x1,pa,x2d),cat(x1,pa,x2d),3));
+ r.push(iiiForms(cat(hett,x1,x2),cat(ta,x1,x2),4));
+ return r;
+}
+function fill(root,list){var v=VERBS.filter(function(x){return x.root===root})[0];for(var i=0;i<5;i++)v.stems[i+1]=list[i]}
+var H=P('ܐ','ʾ');
+fill('ܐܡܪ',strongDerived(H,P('ܡ','m'),P('ܪ','r'),{w:1}));
+fill('ܐܟܠ',strongDerived(H,P('ܟ','k'),P('ܠ','l'),{w:1}));
+fill('ܐܠܨ',strongDerived(H,P('ܠ','l'),P('ܨ','ṣ'),{w:1}));
+fill('ܢܦܩ',strongDerived(P('ܢ','n'),P('ܦ','p'),P('ܩ','q'),{n:1}));
+fill('ܝܠܕ',strongDerived(P('ܝ','y'),P('ܠ','l'),P('ܕ','d'),{w:1}));
+fill('ܫܐܠ',strongDerived(P('ܫ','š'),H,P('ܠ','l')));
+fill('ܒܙ',strongDerived(P('ܒ','b'),P('ܙ','z'),P('ܙ','z')));
+fill('ܩܡ',hollowDerived(P('ܩ','q'),P('ܡ','m')));
+fill('ܡܝܬ',hollowDerived(P('ܡ','m'),P('ܬ','t')));
+fill('ܚܙܐ',iiiDerived(P('ܚ','ḥ'),P('ܙ','z')));
+fill('ܚܕܝ',iiiDerived(P('ܚ','ḥ'),P('ܕ','d')));
+
+function build(s){
+ if(s.fixed){var F=s.fixed,i=s.ist;return {pr:F.pr,perf:F.perf,imp:F.imp.map(function(c){return sm(c,i)})}}
+ var B=s.B,S=s.S||s.B,Bt=s.Bt||B,St=s.Bt||S,n=s.pre[0],t=s.pre[1],x=s.pre[2],q=s.star,u=s.ist;
+ var perf=[B,sm(cat(S,P(a+'ܬ','aṯ')),q),cat(B,P('ܘ','(ū)')),B,cat(Bt,P('ܬ','t')),cat(Bt,P('ܬ','t')),cat(Bt,P('ܬ'+o+'ܢ','ton')),cat(Bt,P('ܬ'+e+'ܝܢ','ten')),sm(cat(St,P(e+'ܬ','eṯ')),q),cat(Bt,P('ܢ','n'))];
+ var imp=[cat(n,s.sg),cat(t,s.sg),cat(n,s.pl,P(uu+'ܢ','ūn')),cat(n,s.pl,P(aa+'ܢ','ān')),cat(t,s.sg),cat(t,s.pl,P(ii+'ܢ','īn')),cat(t,s.pl,P(uu+'ܢ','ūn')),cat(t,s.pl,P(aa+'ܢ','ān')),cat(x,s.sg),cat(n,s.sg)].map(function(c){return sm(c,u)});
+ var pr=[cat(s.pp,s.pm),cat(s.pp,s.pq,P(aa+'ܐ','ā')),cat(s.pp,s.pq,P(ii+'ܢ','īn')),cat(s.pp,s.pq,P(aa+'ܢ','ān'))];
+ if(s.all){perf=perf.map(function(c){return c.t.slice(-1)==='*'?c:sm(c,1)});imp=imp.map(function(c){return c.t.slice(-1)==='*'?c:sm(c,1)});pr=pr.map(function(c){return sm(c,1)})}
+ return {pr:pr,perf:perf,imp:imp};
+}
+var store={};try{store=JSON.parse(localStorage.getItem('syr_edits')||'{}')}catch(err){}
+(function(){var ch=0,n={};Object.keys(store).forEach(function(k){var q=k.split('|');if(/^\d+$/.test(q[0])&&VERBS[+q[0]]){q[0]=VERBS[+q[0]].root;n[q.join('|')]=store[k];ch=1}else n[k]=store[k]});if(ch)store=n})();
+var RU={a:'а',ā:'а',e:'е',ē:'е',i:'и',ī:'и',o:'о',ō:'о',u:'у',ū:'у',b:'б',ḇ:'в',g:'г',ḡ:'г',d:'д',ḏ:'дз',w:'в',z:'з',ḥ:'ҳ',ṭ:'т',y:'й',k:'к',ḵ:'х',l:'л',m:'м',n:'н',s:'с',ʿ:'ʻ',p:'п',ṗ:'ф',ṣ:'с\u0323',q:'қ',r:'р',š:'ш',t:'т',ṯ:'ѳ',ʾ:'ʼ'};
+function ru(t){t=t.normalize('NFC');var r='';for(var i=0;i<t.length;i++){var c=t[i],n=t[i+1];if(c==='y'&&(n==='a'||n==='ā')){r+='я';i++;continue}r+=(RU[c]!==undefined?RU[c]:c)}return r}
+function persist(){try{localStorage.setItem('syr_edits',JSON.stringify(store))}catch(err){}}
+function esc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function cell(c,k,i){return '<td class="ed" data-k="'+k+'" data-i="'+i+'"><span class="sy">'+esc(c.s)+'</span><small>'+esc(c.e?c.t:ru(c.t))+'</small></td>'}
+function tense(title,f,isPart,k){
+ var h='<h2 class="sy2 tn">'+title+'</h2><div class="t"><table dir="rtl"><thead><tr><th></th><th>Ед.</th><th>Мн.</th></tr></thead><tbody>';
+ if(isPart){
+  h+='<tr><th>м.</th>'+cell(f[0],k,0)+cell(f[2],k,2)+'</tr><tr><th>ж.</th>'+cell(f[1],k,1)+cell(f[3],k,3)+'</tr>';
+ }else{
+  var rows=[['3 м.',0,2],['3 ж.',1,3],['2 м.',4,6],['2 ж.',5,7],['1',8,9]];
+  rows.forEach(function(r){h+='<tr><th>'+r[0]+'</th>'+cell(f[r[1]],k,r[1])+cell(f[r[2]],k,r[2])+'</tr>'});
+ }
+ return h+'</tbody></table></div>';
+}
+var vSel=document.getElementById('v'),sSel=document.getElementById('s'),out=document.getElementById('out');
+VERBS.forEach(function(v,i){var o2=document.createElement('option');o2.value=i;o2.textContent=v.root;vSel.appendChild(o2)});
+NAMES.forEach(function(n,i){var o2=document.createElement('option');o2.value=i;o2.textContent=n;sSel.appendChild(o2)});
+vSel.className='sy2';sSel.className='sy2';
+var cur=null;
+function ekey(k,i){return VERBS[cur.v].root+'|'+cur.s+'|'+k+'|'+i}
+function lsGet(k){try{return JSON.parse(localStorage.getItem(k))}catch(err){return null}}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(err){}}
+function render(){
+ if(vSel.value===''||sSel.value===''){out.innerHTML='';cur=null;return}
+ lsSet('syr_sel',{v:vSel.value,s:sSel.value});
+ var v=VERBS[+vSel.value],s=v.stems[+sSel.value];
+ var h='<h2 style="font-size:1.2rem;margin-top:8px;text-align:center"><span class="sy" style="display:inline">'+v.root+' · '+NAMES[+sSel.value]+'</span></h2>';
+ if(!s){cur=null;out.innerHTML=h+'<p class="note" style="text-align:center">Формы этой породы для этого глагола ещё не добавлены.</p>';return}
+ var f=build(s);cur={v:+vSel.value,s:+sSel.value,orig:JSON.parse(JSON.stringify(f))};
+ ['pr','perf','imp'].forEach(function(k){f[k]=f[k].map(function(c,i){var d=store[ekey(k,i)];return d?{s:d.s,t:d.t,e:1}:c})});
+ h+=tense('ܩܐܡ',f.pr,true,'pr')+tense('ܥܒܪܐ',f.perf,false,'perf')+tense('ܥܬܝܕܐ',f.imp,false,'imp');
+ out.innerHTML=h;
+}
+vSel.addEventListener('change',render);sSel.addEventListener('change',render);
+
+/* --- редактирование слова --- */
+var dlg=document.getElementById('dlg'),fs=document.getElementById('fs'),ft=document.getElementById('ft'),editing=null;
+out.addEventListener('click',function(ev){
+ var td=ev.target.closest&&ev.target.closest('td.ed');if(!td||!cur)return;
+ var k=td.getAttribute('data-k'),i=+td.getAttribute('data-i'),d=store[ekey(k,i)],o=cur.orig[k][i];
+ editing={k:k,i:i};fs.value=d?d.s:o.s;ft.value=d?d.t:ru(o.t);dlg.style.display='flex';fs.focus();
+});
+function closeDlg(){dlg.style.display='none';editing=null}
+document.getElementById('bc').addEventListener('click',closeDlg);
+document.getElementById('bs').addEventListener('click',function(){
+ if(!editing)return;var o=cur.orig[editing.k][editing.i],ky=ekey(editing.k,editing.i);
+ if(fs.value===o.s&&ft.value===ru(o.t)){delete store[ky]}else{store[ky]={s:fs.value,t:ft.value}}
+ persist();closeDlg();render();refreshData();
+});
+dlg.addEventListener('click',function(ev){if(ev.target===dlg)closeDlg()});
+
+/* --- настройки: транслитерация, память выбора --- */
+var ui=lsGet('syr_ui')||{nt:0},bt=document.getElementById('bt');
+function applyUi(){document.body.className=ui.nt?'nt':'';bt.textContent=ui.nt?'Показать русскую транскрипцию':'Скрыть русскую транскрипцию'}
+bt.addEventListener('click',function(){ui.nt=ui.nt?0:1;lsSet('syr_ui',ui);applyUi()});applyUi();
+var sel=lsGet('syr_sel');if(sel&&VERBS[+sel.v]&&NAMES[+sel.s]){vSel.value=sel.v;sSel.value=sel.s;render()}
+
+/* --- выгрузка и загрузка данных --- */
+var dd=document.getElementById('dd'),dtext=document.getElementById('dtext'),dmsg=document.getElementById('dmsg'),dx=document.getElementById('dx'),dl=null;
+function payload(){return JSON.stringify({app:'syriac-verbs',version:1,edits:store},null,1)}
+function refreshData(){dtext.value=payload();dmsg.textContent='Сохранённых правок: '+Object.keys(store).length+'.'}
+document.getElementById('bd').addEventListener('click',function(){refreshData();dd.style.display='flex'});
+document.getElementById('dcl').addEventListener('click',function(){dd.style.display='none'});
+dd.addEventListener('click',function(ev){if(ev.target===dd)dd.style.display='none'});
+try{if(window.claude&&window.claude.use){window.claude.use('downloads').then(function(d){if(d){dl=d;dx.style.display='block'}}).catch(function(){})}}catch(err){}
+function saveBlob(){
+ var name='milta-edits.json',txt=payload(),blob=new Blob([txt],{type:'application/json'});
+ try{var f=new File([blob],name,{type:'application/json'});if(navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f]}).then(function(){dmsg.textContent='Готово.'}).catch(function(){});return}}catch(err){}
+ try{var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},1500);dmsg.textContent='Файл сохранён.'}catch(err){dmsg.textContent='Не удалось сохранить файл. Скопируйте текст ниже.'}
+}
+dx.addEventListener('click',function(){
+ if(!dl){saveBlob();return}
+ dl.save({filename:'milta-edits.json',data:payload()}).then(function(){dmsg.textContent='Файл сохранён.'}).catch(function(er){dmsg.textContent=(er&&er.code==='declined')?'Сохранение отменено.':'Не удалось сохранить файл. Скопируйте текст ниже.'});
+});
+if(!(window.claude&&window.claude.use))dx.style.display='block';
+document.getElementById('dcp').addEventListener('click',function(){
+ dtext.select();var ok=false;try{ok=document.execCommand('copy')}catch(err){}
+ if(!ok&&navigator.clipboard){navigator.clipboard.writeText(dtext.value).then(function(){dmsg.textContent='Скопировано.'},function(){dmsg.textContent='Выделите текст и скопируйте вручную.'});return}
+ dmsg.textContent=ok?'Скопировано.':'Выделите текст и скопируйте вручную.';
+});
+function importText(txt){
+ var d;try{d=JSON.parse(txt)}catch(err){dmsg.textContent='Не удалось прочитать данные: это не JSON.';return}
+ var ed=d&&d.edits;if(!ed||typeof ed!=='object'){dmsg.textContent='В данных нет правок.';return}
+ var n=0;Object.keys(ed).forEach(function(k){var v=ed[k];if(v&&typeof v.s==='string'&&typeof v.t==='string'){store[k]={s:v.s,t:v.t};n++}});
+ persist();render();refreshData();dmsg.textContent='Загружено правок: '+n+'. Они объединены с текущими.';
+}
+document.getElementById('dfile').addEventListener('change',function(ev){
+ var f=ev.target.files&&ev.target.files[0];if(!f)return;
+ var r=new FileReader();r.onload=function(){importText(String(r.result))};r.onerror=function(){dmsg.textContent='Не удалось открыть файл.'};r.readAsText(f);ev.target.value='';
+});
+document.getElementById('dim').addEventListener('click',function(){importText(dtext.value)});
+
+</script>
+</body>
+</html>
