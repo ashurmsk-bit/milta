@@ -21,8 +21,8 @@ html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.4 system-ui,sans-serif;padding:16px 12px 40px;max-width:560px;margin-inline:auto}
 .bar{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding:6px 0 10px;z-index:2}
 select{width:100%;padding:14px 10px;font:inherit;font-weight:600;color:var(--fg);background:var(--btn);border:1.5px solid var(--ac);border-radius:12px;appearance:none;-webkit-appearance:none;text-align:center;text-align-last:center}
-.sy{font-family:"Adiabene",serif;direction:rtl;unicode-bidi:isolate;display:block;font-size:1.45rem;line-height:1.5}
-h2{font-size:1rem;color:var(--ac);margin:18px 0 6px}.tn{font-size:1.25rem;margin:16px 0 6px}
+.sy{font-family:"Adiabene",serif;direction:rtl;unicode-bidi:isolate;display:block;font-size:2.7rem;line-height:1.35}
+h2{font-size:1rem;color:var(--ac);margin:18px 0 6px}.tn{font-size:2.1rem;margin:16px 0 6px}
 .t{border:1px solid var(--line);border-radius:10px;overflow:hidden}
 table{border-collapse:collapse;width:100%;table-layout:fixed}
 th,td{border-bottom:1px solid var(--line);padding:7px 6px;text-align:center;vertical-align:top}
@@ -44,6 +44,9 @@ small{display:block;color:var(--mut);font-size:.72rem;direction:ltr;unicode-bidi
 #dd .box button.pri{background:var(--ac);color:var(--bg);border-color:var(--ac);font-weight:600}
 .filebtn input{display:none}.info{margin:0 0 8px;color:var(--mut);font-size:.82rem}
 #dtext{display:block;width:100%;box-sizing:border-box;font:12px/1.3 monospace;color:var(--fg);background:var(--btn);border:1px solid var(--line);border-radius:8px;padding:8px;margin:8px 0}
+select.sy2{font-size:1.8rem;font-weight:400}
+#fs{font-size:2rem!important}
+.w{font-style:normal;display:inline-block;white-space:nowrap}
 .note{color:var(--mut);font-size:.78rem;margin-top:14px}
 #out{min-height:60vh}
 </style>
@@ -55,7 +58,7 @@ small{display:block;color:var(--mut);font-size:.72rem;direction:ltr;unicode-bidi
   <select id="s" aria-label="ܒܢܝܢܐ"><option value="">ܒܢܝܢܐ</option></select>
 </div>
 <div id="out"></div>
-<p class="tools"><button id="bt" class="lnk"></button> <button id="bd" class="lnk">Данные: выгрузить / загрузить</button></p>
+<p class="tools"><button id="bt" class="lnk"></button> <button id="bd" class="lnk">Данные: выгрузить / загрузить</button> <span class="lnk" style="text-decoration:none;opacity:.6">v4</span></p>
 <div id="dlg"><div class="box"><label>Сирийский текст<input id="fs" class="sy2" dir="rtl" autocomplete="off"></label><label>Транскрипция (русскими буквами)<input id="ft" autocomplete="off"></label><div class="row"><button id="bs" class="pri">Сохранить</button><button id="bc">Отмена</button></div></div></div>
 <div id="dd"><div class="box"><p class="info" id="dmsg"></p><p class="info">Правки хранятся только в этом браузере. Выгрузите их, чтобы не потерять.</p><button id="dx" class="wide pri" style="display:none">Выгрузить файл</button><textarea id="dtext" rows="6" spellcheck="false"></textarea><div class="row"><button id="dcp">Копировать</button><button id="dim">Загрузить из текста</button></div><label class="wide filebtn">Загрузить файл<input id="dfile" type="file" accept=".json,application/json,text/plain"></label><button id="dcl" class="wide">Закрыть</button></div></div>
 <script>
@@ -188,7 +191,7 @@ var RU={a:'а',ā:'а',e:'е',ē:'е',i:'и',ī:'и',o:'о',ō:'о',u:'у',ū:'�
 function ru(t){t=t.normalize('NFC');var r='';for(var i=0;i<t.length;i++){var c=t[i],n=t[i+1];if(c==='y'&&(n==='a'||n==='ā')){r+='я';i++;continue}r+=(RU[c]!==undefined?RU[c]:c)}return r}
 function persist(){try{localStorage.setItem('syr_edits',JSON.stringify(store))}catch(err){}}
 function esc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
-function cell(c,k,i){return '<td class="ed" data-k="'+k+'" data-i="'+i+'"><span class="sy">'+esc(c.s)+'</span><small>'+esc(c.e?c.t:ru(c.t))+'</small></td>'}
+function cell(c,k,i){return '<td class="ed" data-k="'+k+'" data-i="'+i+'"><span class="sy"><i class="w">'+esc(c.s)+'</i></span><small>'+esc(c.e?c.t:ru(c.t))+'</small></td>'}
 function tense(title,f,isPart,k){
  var h='<h2 class="sy2 tn">'+title+'</h2><div class="t"><table dir="rtl"><thead><tr><th></th><th>Ед.</th><th>Мн.</th></tr></thead><tbody>';
  if(isPart){
@@ -216,9 +219,11 @@ function render(){
  var f=build(s);cur={v:+vSel.value,s:+sSel.value,orig:JSON.parse(JSON.stringify(f))};
  ['pr','perf','imp'].forEach(function(k){f[k]=f[k].map(function(c,i){var d=store[ekey(k,i)];return d?{s:d.s,t:d.t,e:1}:c})});
  h+=tense('ܕܩܐܡ',f.pr,true,'pr')+tense('ܕܥܒܼܪ',f.perf,false,'perf')+tense('ܕܥܬܝܕ',f.imp,false,'imp');
- out.innerHTML=h;
+ out.innerHTML=h;fit();
 }
 vSel.addEventListener('change',render);sSel.addEventListener('change',render);
+function fit(){var els=out.querySelectorAll('td .sy');for(var i=0;i<els.length;i++){var p=els[i],w=p.firstChild;p.style.fontSize='';var base=parseFloat(getComputedStyle(p).fontSize),aw=p.clientWidth;if(w&&aw>0&&w.offsetWidth>aw)p.style.fontSize=Math.max(base*aw/w.offsetWidth*0.96,base*0.55)+'px'}}
+window.addEventListener('resize',fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 
 /* --- редактирование слова --- */
 var dlg=document.getElementById('dlg'),fs=document.getElementById('fs'),ft=document.getElementById('ft'),editing=null;
